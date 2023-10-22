@@ -9,4 +9,13 @@ public class ValidationException extends RuntimeException{
         this.field = field;
         this.message = message;
     }
+
+    public String getField() {
+        return field;
+    }
+
+    @Override
+    public String getMessage(){
+        return field + " " + message;
+    }
 }

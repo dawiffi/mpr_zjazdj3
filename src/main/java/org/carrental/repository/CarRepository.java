@@ -7,10 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 public class CarRepository {
+
     private List<Car> carList = new ArrayList<>();
 
-    public Car create(Car car){
+    public Car create(Car car) {
+        car.setId(carList.size());
         carList.add(car);
         return car;
     }
@@ -39,10 +42,10 @@ public class CarRepository {
         carList = new ArrayList<>();
     }
 
-    public Optional<Car> modify(Car car){
+    public Optional<Car> modify(Car car) {
         Optional<Car> carToModify = getById(car.getId());
 
-        return carToModify.map(it ->  {
+        return carToModify.map(it -> {
             it.setMake(car.getMake());
             it.setCarClass(car.getCarClass());
             it.setModel(car.getModel());
@@ -50,5 +53,9 @@ public class CarRepository {
             it.setVin(car.getVin());
             return it;
         });
+    }
+
+    public List<Car> getAll() {
+        return carList;
     }
 }
